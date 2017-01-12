@@ -1,4 +1,6 @@
 //Write a function to get Nth node in a Linked List
+//Author : Krishank S. Mehta
+//Date   : 1//11/2017
 
 #include<iostream>
 
