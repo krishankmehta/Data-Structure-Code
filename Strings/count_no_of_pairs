@@ -1,0 +1,44 @@
+#include<iostream>
+
+using namespace std;
+int count=0;
+
+
+int abs(int n)
+{
+    if(n<0)
+    {
+        return n*(-1);
+    }
+    else
+    {
+        return n;
+    }
+}
+
+
+int pair_count(string in)
+{
+
+    for(int i=0; i<in.length(); i++)
+    {
+        for(int x=i+1; x<in.length(); x++)
+        {
+            if(abs(in[i]-in[x])==abs(i-x))
+            {
+                ++count;
+            }
+        }
+    }
+    return count;
+
+}
+
+int main()
+{
+    string in;
+    cout<<"Input the string :"<<endl;
+    cin>>in;
+    cout<<pair_count(in)<<endl;
+
+}
