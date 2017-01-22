@@ -1,0 +1,105 @@
+//To insert node in between the linked list
+//Author : Krishank S. Mehta
+//Date   : 1/21/2017
+//Time   : 11:14 PM
+
+
+#include<iostream>
+
+using namespace std;
+
+
+struct node
+{
+    int data;
+    node* next;
+
+};
+
+void init_node(node* head, int n)
+{
+    head->data=n;
+    head->next=NULL;
+}
+
+void add_node(node* head,int n)
+{
+    node* newnode=new node;
+    newnode->data=n;
+    newnode->next=NULL;
+
+    node* cur=head;
+
+    while(cur)
+    {
+        if(cur->next==NULL)
+        {
+            cur->next=newnode;
+            return;
+        }
+        cur=cur->next;
+    }
+}
+
+void insert_between(node** head, int n, int position)
+{
+
+    node* insertnode = new node;
+    insertnode->data=n;
+    insertnode->next=NULL;
+    node* pre;
+    node *cur=*head;
+    if(position==1)
+    {
+        insertnode->next=*head;
+        *head=insertnode;
+    }
+
+    int count=2;
+
+    while(cur)
+    {
+        if(count==position)
+        {
+            pre=cur->next;
+            cur->next=insertnode;
+            insertnode->next=pre;
+            return;
+        }
+        cur=cur->next;
+        count+=1;
+    }
+}
+
+void display(node* head)
+{
+    node * cur=head;
+    while(cur)
+    {
+        cout<<cur->data<<" ";
+        cur=cur->next;
+    }
+    cout<<endl;
+}
+
+int main()
+{
+    node* head= new node;
+    init_node(head,10);
+    add_node(head,20);
+    add_node(head,30);
+    add_node(head,40);
+    add_node(head,50);
+    add_node(head,60);
+    add_node(head,70);
+    cout<<"Here is the Linked Lis: ";
+    display(head);
+    int pos;
+    cout<<"Insert the position where you want to enter the node :";
+    cin>>pos;
+    cout<<"Now Enter the value :";
+    int value;
+    cin>>value;
+    insert_between(&head,value,pos);
+    display(head);
+}
