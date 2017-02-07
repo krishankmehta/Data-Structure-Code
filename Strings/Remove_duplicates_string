@@ -1,0 +1,30 @@
+//To remove duplicates from a string
+//Author : Krishank S. Mehta
+//Date: 2/6/2017
+//Time: 11:04 PM
+
+
+#include<iostream>
+
+using namespace std;
+
+int main()
+{
+	string in_string;
+	cout << "Enter the input string ";
+	cin >> in_string;
+	for (int i = 0; i<in_string.size(); i++)
+	{
+		for (int j = i+1; j<in_string.size(); j++)
+		{
+			if (in_string[i] == in_string[j])
+			{
+			    
+				in_string.erase(in_string.begin()+j);
+			}
+			
+		}
+	}
+	cout << in_string << endl;
+
+}
