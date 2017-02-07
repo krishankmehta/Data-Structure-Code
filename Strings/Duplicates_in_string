@@ -1,0 +1,36 @@
+//To print dupicates in string
+//Author: Krishank S. Mehta
+//Date:   2/7/2017  
+//Time:   2:30 AM
+
+
+#include<iostream>
+
+using namespace std;
+
+int main()
+{
+	string input = "test string";
+
+	int count;
+
+	for (int i = 0; i<input.size(); i++)
+	{
+		count = 1;
+		for (int j = i + 1; j<input.size(); j++)
+		{
+			if (input[i] == input[j])
+			{
+				input.erase(input.begin() + j);
+				++count;
+			}
+		}
+		if (count>1)
+		{
+			cout << input[i] << ':' << count << " " << endl;
+
+		}
+
+	}
+
+}
