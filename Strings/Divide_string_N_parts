@@ -1,0 +1,46 @@
+//Dive a string in N equal parts
+//Author : Krishank S. Mehta
+//Date   :  2/7/2017
+//Time   :  3:15AM
+
+
+#include<iostream>
+
+using namespace std;
+
+void split(string input, int num)
+{
+    int part=0;
+    if((((input.size())%(num)))==0)
+    {
+        part=(((input.size())/(num)));
+        string output;
+        for(int i=0;i<num;i++)
+        {
+            for(int j=0;j<part;j++)
+            {
+                output+=input[j];
+                
+            }
+            cout<<output<<endl;
+            input.erase(0,(part));
+            output="";
+        }
+    }
+    else
+    {
+        cout<<"The string is not divisible by the given number :"<<endl;
+    }
+}
+
+int main()
+{
+    cout<<"Give the input string without spaces "<<endl;
+    string input;
+    cin>>input;
+    cout<<"Input the number for the string to be split in "<<endl;
+    int num;
+    cin>>num;
+    split(input,num);
+    
+}
