@@ -1,0 +1,41 @@
+//To find maximum occurance of character in string
+//Author : Krishank S. Mehta
+//Date   : 2/8/2017
+//Time   : 7:34 PM
+
+
+#include<iostream>
+
+using namespace std;
+
+#define ASCII_SIZE 255
+
+int arr[ASCII_SIZE];
+
+int main()
+{
+    string input;
+    
+    cout<<"Input the string :";
+    cin>>input;
+    int i=0;
+    int index;
+    while(i<input.length())
+    {
+        index=(int)input[i];
+        arr[index]+=1;
+        i++;
+    }
+    int x=0;
+    for(int i=0;i<255;i++)
+    {
+        if(arr[i]>arr[x])
+        {
+            x=i;
+        }
+    }
+    cout<<(char)x<<endl;
+}
+
+
+
