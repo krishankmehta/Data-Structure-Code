@@ -1,0 +1,93 @@
+//Basic stack operations
+//Author : Krishank S. Mehta
+//Date   : 2/9/2017
+//Time   : 4:02 PM
+
+
+#include<iostream>
+#include<vector>
+
+using namespace std;
+
+class Stackx
+{
+    private:
+    int maxsize;
+    vector<double> stack_vect;
+    int top;
+    
+    public:
+    
+    Stackx(int s)
+    {
+        maxsize=s;
+        top=-1;
+        stack_vect.reserve(maxsize);
+    }
+    
+    void push(double i)
+    {
+        stack_vect[++top]=i;
+    }
+    
+    double pop()
+    {
+        
+        return stack_vect[top--];
+        
+    }
+    
+    double peek()
+    {
+        return stack_vect[top];
+    }
+    
+    bool isEmpty()
+    {
+        if(top==-1)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    
+    
+    bool isFull()
+    {
+        if(top=maxsize-1)
+        {
+            
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+        
+        
+    }
+    
+};
+
+
+
+
+int main()
+{
+    Stackx stack(10);
+    stack.push(20);
+    stack.push(40);
+    stack.push(80);
+    stack.push(100);
+    
+    while(!stack.isEmpty())
+    {
+        cout<<stack.pop()<<endl;
+    }
+    
+    
+    
+}
