@@ -1,0 +1,70 @@
+//To create stacks using Linked List
+//Author : Krishank S. Mehta
+//Date   : 2/20/2017
+//Time   : 1:00 AM
+
+
+#include<iostream>
+
+
+using namespace std;
+
+struct node
+{
+    int data;
+    node* next;
+};
+node *top=NULL;
+
+void push(int n)
+{
+ node *temp= new node;
+ temp->data=n;
+ temp->next=top;
+ top=temp;
+}
+
+int pop()
+{
+    node *temp  ;
+    if(top==NULL)
+    {
+        cout<<"The stack is Empty"<<" ";
+        return 0;
+    }
+    int value=top->data;
+    temp=top;
+    top=top->next;
+    delete(temp);
+    return value;
+    
+}
+
+void display(node *top)
+{
+    node* curr=top;
+    while(curr)
+    {
+        cout<<curr->data<<endl;
+        curr=curr->next;
+    }
+}
+
+
+int main()
+{
+    push(10);
+    display(top);
+    cout<<endl;
+    push(20);
+    display(top);
+    cout<<endl;
+    push(30);
+    display(top);
+    cout<<endl;
+    push(40);
+    display(top);
+    cout<<endl;
+    cout<<pop()<<endl;
+    cout<<pop()<<endl;
+}
