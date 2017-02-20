@@ -1,0 +1,30 @@
+//To reverse string using stack
+//Author  : Krishank S. Mehta
+//Date    : 2/20/2017
+//Time    : 1:45 AM
+
+
+#include<iostream>
+#include <stack>
+
+using namespace std;
+stack<int>my_stack;
+
+int main()
+{
+    string a="";
+    cout<<"Enter the string to be reversed:"<<endl;
+    cout<<"String : ";
+    string x;
+    cin>>x;
+    for(int i=0;i<x.length();i++)
+    {
+        my_stack.push(x[i]);
+    }
+    for(int i=0;i<x.length();i++)
+    {
+        a+=my_stack.top();
+        my_stack.pop();
+    }
+    cout<<a<<endl;
+}
