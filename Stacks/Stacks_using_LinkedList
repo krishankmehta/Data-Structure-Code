@@ -18,27 +18,31 @@ node *top=NULL;
 
 void push(int n)
 {
- node *temp= new node;
- temp->data=n;
- temp->next=top;
- top=temp;
+    node *temp= new node;
+    temp->data=n;
+    temp->next=top;
+    top=temp;
 }
 
-int pop()
+int top_func()
 {
-    node *temp  ;
+    
     if(top==NULL)
     {
         cout<<"The stack is Empty"<<" ";
         return 0;
     }
-    int value=top->data;
+    return top->data;
+}
+
+void pop()
+{
+    node *temp;
     temp=top;
     top=top->next;
-    delete(temp);
-    return value;
-    
+    delete(temp);  
 }
+
 
 void display(node *top)
 {
@@ -65,6 +69,10 @@ int main()
     push(40);
     display(top);
     cout<<endl;
-    cout<<pop()<<endl;
-    cout<<pop()<<endl;
+    cout<<top_func()<<endl;
+    pop();
+    cout<<top_func()<<endl;
+    pop();
+    pop();
+    cout<<top_func()<<endl;
 }
