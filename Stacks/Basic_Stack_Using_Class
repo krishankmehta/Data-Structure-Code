@@ -1,0 +1,83 @@
+//To impement basic stack operation using class
+//Author : Krishank S. Mehta
+//Date   : 3/7/2017
+//Time   : 12:57 AM
+
+
+#include<iostream>
+#include<vector>
+
+using namespace std;
+
+class stack
+{
+private:
+
+    int top;
+    int maxsize;
+    vector<double> stack_vect;
+
+public:
+    stack(int s) :maxsize(s), top(-1)
+    {
+        stack_vect.resize(maxsize);
+    }
+
+
+    void push(double i)
+    {
+        stack_vect[++top]=i;
+
+    }
+
+    int pop()
+    {
+        return stack_vect[top--];
+
+    }
+    int peek()
+    {
+        return stack_vect[top];
+    }
+
+    bool is_Empty()
+    {
+        if(top==-1)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    bool is_Full()
+    {
+        if(top==maxsize-1)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+
+};
+int main()
+{
+
+    stack stack1(10);
+    stack1.push(10);
+    stack1.push(20);
+    stack1.push(30);
+    stack1.push(40);
+    stack1.push(50);
+
+    while(!stack1.is_Empty())
+    {
+        int value=stack1.pop();
+        cout<<value<<endl;
+    }
+}
