@@ -1,0 +1,82 @@
+//To implement Queue using Linked List
+//Author : Krishank S. Mehta
+//Date   : 3/9/2017
+//Time   : 11:33 AM (PST)
+
+
+#include<iostream>
+using namespace std;
+
+
+
+struct node
+{
+    int data;
+    node* next;
+};
+
+void display(node* head)
+{
+    node * cur=head;
+    cout<<"Orignal Queue : ";
+    while(cur)
+    {
+        cout<<cur->data<<" ";
+        cur=cur->next;
+    }
+    cout<<endl;
+}
+
+void get_value(node ** head)
+{
+    node * rem=*head;
+    cout<<"Queue value when removed : " <<rem->data<<endl;
+    rem=rem->next;
+    *head=rem;
+}
+
+void insert(node *head, int n)
+{
+    static int x;
+    ++x;
+    if(x==1)
+    {
+        head->data=n;
+        head->next=NULL;
+        return;
+    }
+    else
+    {
+        node* add= new node;
+        add->data=n;
+        add->next=NULL;
+        node* curr=head;
+        while(curr)
+        {
+            if(curr->next==NULL)
+            {
+                curr->next=add;
+                return;
+            }
+            curr=curr->next;
+        }
+    }
+
+}
+
+
+
+int main()
+{
+    node* head= new node;
+    insert(head,10);
+    insert(head,20);
+    insert(head,30);
+    insert(head,40);
+    insert(head,50);
+    display(head);
+    get_value(&head);
+    get_value(&head);
+    get_value(&head);
+    display(head);
+}
