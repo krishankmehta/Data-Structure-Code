@@ -1,0 +1,99 @@
+//Complete Queue Operation
+
+
+
+
+
+#include<iostream> 
+
+using namespace std;
+
+struct queue
+{
+  int data;
+  queue * next;
+    
+};
+
+
+void enqueue(queue* first,queue** last, int data)
+{
+    
+    queue *curr = first;
+    queue *queue_node = new queue;
+    queue_node->data = data;
+    queue_node->next = NULL;
+    
+    while(curr->next!=NULL)
+    {
+        curr = curr->next;
+        
+    }
+    
+    curr->next = queue_node;
+    *last = queue_node;
+}
+
+
+void dequeue(queue** first)
+{
+    queue* curr = *first;
+    *first = (*first)->next;
+    delete(curr);
+}
+
+void front(queue* first)
+{
+    cout<<"Value at front of Queue is : "<<first->data<<endl;
+}
+
+void rear(queue* last)
+{
+    cout<<"Value at rear of Queue is : "<<last->data<<endl;
+}
+
+
+void display(queue* first)
+{
+    
+    queue* curr = first;
+    cout<<"THE QUEUE IS :"<<endl;
+    while(curr)
+    {
+        cout<<"  "<<curr->data<<"";
+        curr=curr->next;
+    }
+    cout<<endl;
+    
+}
+
+
+
+
+int main()
+{
+  queue *first;
+  queue *queue_node = new queue;
+  first = queue_node;
+  queue *last;
+  queue_node->data = 10;
+  queue_node->next = NULL;
+  enqueue(first,&last,20);
+  enqueue(first,&last,30);
+  enqueue(first,&last,40);
+  enqueue(first,&last,50);
+  enqueue(first,&last,60);
+  enqueue(first,&last,70);
+  enqueue(first,&last,80);
+  display(first);
+  dequeue(&first);
+  display(first);
+  dequeue(&first);
+  display(first);
+  front(first);
+  rear(last);
+  dequeue(&first);
+  display(first);
+  enqueue(first,&last,90);
+  display(first);
+}
