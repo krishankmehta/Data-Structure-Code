@@ -1,0 +1,102 @@
+//To develop priority Queue
+
+
+
+
+
+#include<iostream>
+
+using namespace std;
+
+struct queue
+{
+    int data;
+    int key;
+    queue * next;
+
+};
+
+
+void enqueue(queue** first,queue** last, int data, int key)
+{
+    queue* queue_node = new queue;
+    queue_node->data = data;
+    queue_node->key = key;
+    queue_node->next = NULL;
+
+    if(queue_node->key < (*first)->key)
+    {
+        queue* curr = *first;
+        queue_node->next = curr;
+        *first = queue_node;
+        return;
+    }
+
+    if(queue_node->key>=(*last)->key)
+    {
+        queue *curr = *last;
+        curr->next = queue_node;
+        *last = queue_node;
+        return;
+    }
+
+    else
+    {
+        queue *curr = *first;
+        queue *prev = *first;
+        int x = 0;
+        while(curr->key<queue_node->key)
+        {
+            curr=curr->next;
+            if(x>=1)
+                prev = prev->next;
+            ++x;
+        }
+        prev->next = queue_node;
+        queue_node->next = curr;
+        return;
+    }
+}
+
+
+
+
+void display(queue* first)
+{
+
+    queue* curr = first;
+    cout<<"THE QUEUE IS :"<<endl;
+    while(curr)
+    {
+        cout<<"  "<<curr->data<<"   "<<"Priority :"<< curr->key<<endl;
+        curr=curr->next;
+    }
+    cout<<endl;
+
+}
+
+
+
+
+int main()
+{
+    queue *first;
+    queue *queue_node = new queue;
+    first = queue_node;
+    queue *last;
+    last = queue_node;
+    queue_node->data = 10;
+    queue_node->key = 7;
+    queue_node->next = NULL;
+    enqueue(&first,&last,20,3);
+    enqueue(&first,&last,30,4);
+    enqueue(&first,&last,40,1);
+    enqueue(&first,&last,50,5);
+    enqueue(&first,&last,60,6);
+    enqueue(&first,&last,80,9);
+    enqueue(&first,&last,70,8);
+    enqueue(&first,&last,80,2);
+    enqueue(&first,&last,90,10);
+    display(first);
+
+}
