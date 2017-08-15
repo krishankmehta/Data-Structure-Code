@@ -1,0 +1,56 @@
+//Binary Search
+
+
+
+
+
+#include<iostream>
+
+
+using namespace std;
+
+void search(int array[], int num, int size,int low , int great)
+{
+    bool flag=false;
+    while(flag==false)
+    {
+        int mid = ((low + great) / 2);
+        if(great>=low)
+        {
+      
+        if(array[mid]==num)
+        {
+            flag=true;
+            cout<<"The number"<< ' ' << num <<" is present in the array"<< endl;
+            break;
+        }
+        
+         else if(array[mid] > num)
+        {
+            great = mid - 1;
+        }
+        
+         else if(array[mid] < num)
+        {
+            low = mid + 1;
+        }
+        }
+        
+        else{
+            cout<<"Did not find"<<endl;
+            flag=true;
+            break;
+            }
+    }
+    
+    
+}
+
+
+int main()
+{
+    int array[] = {2 ,3 ,4, 10, 15, 19, 20, 22, 30, 31};
+    int size = sizeof(array)/sizeof(array[0]);
+    search(array,40,size,0,size-1);
+
+}
