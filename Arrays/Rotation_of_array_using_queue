@@ -1,0 +1,44 @@
+//Rotation of array using queue
+
+
+
+
+
+#include<iostream>
+#include<queue>
+
+using namespace std;
+
+
+int* left(int array[], int shift, int size)
+{
+queue<int> q;
+
+for(int i=0;i<shift;i++)
+{
+    q.push(array[i]);
+}
+for(int i=0;i<size-shift;i++)
+{
+    array[i] = array[i+shift];
+}
+for(int i=size-shift;i<size;i++)
+{
+    array[i] = q.front();
+    q.pop();
+}
+return array;
+    
+}
+
+int main()
+{
+int *arrp;
+int array[10] = {1,2,3,4,5,6,7,8,9,10};
+int size  = (sizeof(array)/sizeof(array[0]));
+arrp = left(array,6,size);
+for(int i=0;i<size;i++)
+{
+    cout<<*(arrp+i)<< " ";
+}
+}
