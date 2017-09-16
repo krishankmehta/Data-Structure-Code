@@ -1,0 +1,100 @@
+//To find nth largest and nth smallest number in a given tree
+
+
+
+
+
+#include<iostream>
+
+using namespace std;
+
+
+struct node
+{
+    int data;
+    node* left;
+    node* right;
+};
+
+
+node* get_node(node* root,int data)
+{
+    node* temp = new node;
+    temp->data = data;
+    temp->right  = NULL;
+    temp->left = NULL;
+    return temp;
+}
+
+
+node* insert(node* root, int data)
+{
+    if(root==NULL)
+    {
+        root = get_node(root,data);
+        return root;
+    }
+    else if(root->data<=data)
+    {
+        root->right = insert(root->right,data);
+        return root;
+    }
+    
+    else if(root->data>=data)
+    {
+        root->left = insert(root->left,data);
+        return root;
+    }
+    
+}
+
+void nth_smallest(node* root,int number)
+{
+    
+    if(root==NULL)
+    return;
+    static int count = 0;
+    nth_smallest(root->left,number);
+    ++count;
+    if(count == number)
+    {
+        cout<<root->data<<endl;
+    }
+    nth_smallest(root->right,number);
+}
+
+
+void nth_largest(node* root,int number)
+{
+    
+    if(root==NULL)
+    return;
+    static int count = 0;
+    nth_largest(root->right,number);
+    ++count;
+    if(count == number)
+    {
+        cout<<root->data<<endl;
+    }
+    nth_largest(root->left,number);
+}
+
+int main()
+{
+    node* root = NULL;
+    root = insert(root,40);
+    root = insert(root,60);
+    root = insert(root,20);
+    root = insert(root,10);
+    root = insert(root,12);
+    root = insert(root,32);
+    root = insert(root,8);
+    root = insert(root,28);
+    int number;
+    cout<<"Enter the number to found nth smallest"<<endl;
+    cin>>number;
+    nth_smallest(root,number);
+    cout<<"Enter the number to found nth largest"<<endl;
+    cin>>number;
+    nth_largest(root,number);
+}
