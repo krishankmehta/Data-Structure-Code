@@ -1,0 +1,93 @@
+//To ciunt the number of leaves in a tree
+
+
+
+
+
+#include<iostream>
+
+using namespace std;
+
+struct node
+{
+    int data;
+    node* left;
+    node* right;
+};
+
+
+node* get_node(node* root, int data)
+{
+    node *temp = new node;
+    temp->data = data;
+    temp->left = NULL;
+    temp->right = NULL;
+    return temp;
+}
+
+
+node* insert(node* root, int data)
+{
+    if(root == NULL)
+    {
+        root = get_node(root,data);
+        return root;
+    }
+    
+    else if(root->data < data)
+    {
+        root->right = insert(root->right,data);
+        return root;
+    }
+    else if(root->data>=data)
+     {
+        root->left = insert(root->left,data);
+        return root;
+    }
+}
+
+void inorder(node* root)
+{
+    
+    if(root==NULL)
+    return;
+    
+    inorder(root->left);
+    cout<<root->data<<" ";
+    inorder(root->right);
+}
+
+
+int count_leaf(node* root)
+{
+    static int count = 0;
+    if(root->left==NULL&&root->right==NULL)
+    {
+        ++count;
+        return 0;
+    }
+    
+    count_leaf(root->left);
+    count_leaf(root->right);
+    
+    return count;
+    
+    
+    
+}
+
+int main()
+{
+    node* root = NULL;
+    root = insert(root,40);
+    root = insert(root,70);
+    root = insert(root,20);
+    root = insert(root,10);
+    root = insert(root,25);
+    root = insert(root,60);
+    root = insert(root,80);
+    inorder(root);
+    cout<<endl;
+    cout<<count_leaf(root);
+    
+}
