@@ -1,0 +1,117 @@
+//To implement complete Queue using Linked List
+
+
+
+
+
+#include<iostream>
+
+using namespace std;
+
+
+struct node{
+    node* next;
+    int data;
+};
+
+
+
+void enque(node* head, int data)
+{
+    static int x = 0;
+    ++x;
+    if(x==1)
+    {
+        head->data = data;
+        head->next = NULL;
+        return;
+        
+    }
+    else
+    {
+        node* add = new node;
+        add->next = NULL;
+        add->data = data;
+        node* curr = head;
+        while(curr->next!=NULL)
+        {
+            curr = curr->next;
+        }
+        curr->next = add;
+        return;
+        
+    }
+}
+
+void print_queue(node* head)
+{
+    
+    node* curr = head;
+    while(curr)
+    {
+        cout<<curr->data<<" ";
+        curr= curr->next;
+       
+    }
+     cout<<endl;
+}
+void deque(node** head)
+{
+    static int count = 0;
+    if(count>=1)
+    {
+        cout<<"The Queue is already empty"<<endl;
+        return;
+    }
+    
+    if((*head)->next==NULL)
+    {
+        ++count;
+    }
+    
+    node* curr = *head;
+    curr=curr->next;
+    delete[] *head;
+    *head = curr;
+     
+}
+
+int print_front(node* head)
+{
+    return head->data;
+}
+
+int print_rear(node* head)
+{
+  node* curr = head;
+  while(curr->next!=NULL)
+  {
+      curr = curr->next;
+  }
+  return curr->data;
+}
+
+int main()
+{
+    node* head = new node;
+    enque(head,10);
+    enque(head,20);
+    enque(head,30);
+    enque(head,40);
+    enque(head,50);
+    enque(head,60);
+    print_queue(head);
+    cout<<print_front(head)<<endl;
+    cout<<print_rear(head)<<endl;
+    deque(&head);
+    deque(&head);
+    print_queue(head);
+    deque(&head);
+    deque(&head);
+    deque(&head);
+    print_queue(head);
+    deque(&head);
+   
+   
+    
+}                                                                               
