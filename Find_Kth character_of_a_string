@@ -1,0 +1,45 @@
+//To find Kth character from a decrypted string
+
+
+
+
+
+#include<iostream>
+#include<string>
+
+using namespace std;
+
+char  find_kth_character(string x,int k)
+{
+    string temp="";
+    string final="";
+    int count = 0;
+    for(int i=0;i<x.length();i++)
+    {
+        if((int(x[i]))>=49&&(int(x[i]))<=57)
+        {
+            int value = x[i] - '0';
+            for(int i=0;i<value;i++)
+            {
+            final+=temp;
+            }
+            temp="";
+            ++i;
+        }
+         temp+=x[i];
+  
+    }
+    cout<<final<<endl;
+    return final[k];
+    
+}
+
+
+int main()
+{
+ 
+    string x = "ab4c2ed3";
+    int k = 9;
+    cout<<"The"<<" "<<k<<"th"<<" "<<"character from the string will be"<<" "<<find_kth_character(x,k);
+ 
+}
