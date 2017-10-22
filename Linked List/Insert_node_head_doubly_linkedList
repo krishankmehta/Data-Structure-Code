@@ -1,0 +1,77 @@
+//To insert a node at the head in a doubly linked list
+
+
+
+
+
+#include<iostream>
+
+
+using namespace std;
+
+
+struct node
+{
+    int data;
+    node* left;
+    node* right;
+};
+
+node* init_node(node* head, int data)
+{
+    head->data = data;
+    head->left = NULL;
+    head->right = NULL;
+    return head;
+}
+
+void add_node(node* head, int data)
+{
+    node* curr = head;
+    node* newnode = new node;
+    newnode->data = data;
+    newnode->right = NULL;
+    while(curr->right!=NULL)
+    {
+        curr=curr->right;
+    }
+    
+    curr->right= newnode;
+    newnode->left = curr;
+}
+
+
+void display(node* head)
+{
+    while(head->right!= NULL)
+    {
+        cout<<head->data<<" ";
+        head = head->right;
+    }
+    cout<<endl;
+}
+
+void insert_front(node** head, int data)
+{
+node* newnode = new node;
+newnode->data = data;
+newnode->left=NULL;
+newnode->right = (*head);
+*head = newnode;
+//return head;
+}
+
+int main()
+{
+  node* head = new node;
+  head = init_node(head,10);
+  add_node(head,20);
+  add_node(head,30);
+  add_node(head,40);
+  add_node(head,50);
+  add_node(head,60);
+  add_node(head,60);
+  display(head);
+  insert_front(&head,4);
+  display(head);
+}
