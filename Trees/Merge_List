@@ -1,0 +1,103 @@
+//To merge two linked List
+
+
+
+
+
+#include<iostream>
+
+
+using namespace std;
+
+
+struct node{
+    
+    int data;
+    node* next;
+};
+
+
+void init_node(node* head,int data)
+{
+    head->data = data;
+    head->next = NULL;
+}
+
+
+void add_node(node* head,int data)
+{
+    node* new_node = new node;
+    new_node->data = data;
+    new_node->next = NULL;
+    node* curr = head;
+    while(curr->next!=NULL)
+    {
+        curr = curr->next;  
+    }
+    curr->next = new_node;
+    
+}
+
+
+void display(node* head)
+{
+    node* curr = head;
+    while(curr)
+    {
+        cout<<curr->data<<" ";
+        curr = curr->next;
+    }
+    cout<<endl;
+}
+
+
+
+node* merge(node* head,node* head1)
+{
+    node* result = NULL;
+    if(head==NULL)
+    {
+    return head1;
+    }
+    else if(head1==NULL)
+    {
+        return head;
+    }
+    
+    if(head->data<=head1->data)
+    {
+     result = head;
+     result->next = merge(head->next,head1);
+    }
+    else
+    {
+    result = head1;
+    result->next = merge(head,head1->next);
+    }
+    return result;
+}
+
+
+int main()
+{
+    node* head = new node;
+    init_node(head,10);
+    add_node(head,20);
+    add_node(head,30);
+    add_node(head,40);
+    add_node(head,50);
+    add_node(head,60);
+    display(head);
+    node* head1 = new node;
+    init_node(head1,5);
+    add_node(head1,15);
+    add_node(head1,25);
+    add_node(head1,28);
+    add_node(head1,32);
+    add_node(head1,45);
+    display(head1);
+    node* new_head = NULL;
+    new_head = merge(head,head1);
+    display(new_head);
+    
+}
