@@ -1,0 +1,92 @@
+//to reverse group of elements in Linked List
+
+
+
+
+
+#include<iostream>
+
+
+using namespace std;
+
+
+struct node{
+    
+    int data;
+    node* next;
+};
+
+
+void init_node(node* head,int data)
+{
+    head->data = data;
+    head->next = NULL;
+}
+
+
+void add_node(node* head,int data)
+{
+    node* new_node = new node;
+    new_node->data = data;
+    new_node->next = NULL;
+    node* curr = head;
+    while(curr->next!=NULL)
+    {
+        curr = curr->next;  
+    }
+    curr->next = new_node;
+    
+}
+
+void display(node* head)
+{
+    node* curr = head;
+    while(curr)
+    {
+        cout<<curr->data<<" ";
+        curr = curr->next;
+    }
+    cout<<endl;
+}
+
+
+node *reverse_nodes(node* head, int k)
+{
+node* next = NULL;
+node* current = head;
+node* previous = NULL;
+int count = 0;
+
+while(current != NULL && count<k)
+{
+    next = current->next;
+    current->next = previous;
+    previous = current;
+    current = next;
+    ++count;
+}
+if(next!=NULL)
+{
+    head->next = reverse_nodes(next,k);
+}
+return previous;
+}
+
+
+int main()
+{
+    node* head = new node;
+    init_node(head,10);
+    add_node(head,20);
+    add_node(head,30);
+    add_node(head,40);
+    add_node(head,50);
+    add_node(head,60);
+    add_node(head,70);
+    add_node(head,80);
+    add_node(head,90);
+    //add_node(head,100);
+    display(head);
+    head = reverse_nodes(head,3);
+    display(head);
+}
